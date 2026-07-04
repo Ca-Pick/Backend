@@ -1,20 +1,19 @@
 services:
-  api:
-    image: be-api
-    ports:
-      - "8080:8080"
-    environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/capick
-      SPRING_DATASOURCE_USERNAME: root
-      SPRING_DATASOURCE_PASSWORD: 1234
-    depends_on:
-      - mysql
 
   mysql:
+
     image: mysql:8.0
+    container_name: capick-mysql
+    ports:
+      - "3307:3306"
     environment:
       MYSQL_ROOT_PASSWORD: 1234
       MYSQL_DATABASE: db
-    ports:
+      MYSQL_USER: capick
+      MYSQL_PASSWORD: 1234
+      TZ: Asia/Seoul
+    volumes:
+      - capick-mysql-data:/var/lib/mysql
 
-      - "3306:3306"
+volumes:
+  capick-mysql-data:
