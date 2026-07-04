@@ -1,0 +1,7 @@
+services:
+  api:
+    container_name: myapp-api-dev
+    environment:
+      - API_URL=https://api-testnet.example.com
+      - API_KEY=${DEV_API_KEY}
+      - LOG_LEVEL=debug
