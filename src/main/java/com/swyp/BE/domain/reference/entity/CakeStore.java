@@ -15,7 +15,7 @@ import java.math.BigDecimal;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class CakeStore extends BaseTimeEntity {
+public class CakeStore {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
