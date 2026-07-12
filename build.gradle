@@ -30,8 +30,25 @@ dependencies {
 	runtimeOnly 'com.mysql:mysql-connector-j'
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
     implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.6'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
+    implementation 'io.jsonwebtoken:jjwt-api:0.12.3'
+    runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.12.3'
+    runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.12.3'
 }
 
 tasks.named('test') {
 	useJUnitPlatform()
+}
+
+tasks.named('bootRun') {
+	def envFile = file("${rootDir}/.env")
+	if (envFile.exists()) {
+		envFile.readLines().each { line ->
+			if (line.trim() && !line.startsWith('#') && line.contains('=')) {
+				def (key, value) = line.split('=', 2)
+				environment key.trim(), value.trim()
+			}
+		}
+	}
 }
