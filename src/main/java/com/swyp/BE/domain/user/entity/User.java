@@ -2,6 +2,8 @@ package com.swyp.BE.domain.user.entity;
 
 import com.swyp.BE.global.entity.BaseTimeEntity;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -23,10 +25,19 @@ public class User extends BaseTimeEntity {
     private String providerId;
     private String nickname;
 
+    @Enumerated(EnumType.STRING)
+    private Role role;
+
     @Builder
-    public User(String provider, String providerId, String nickname) {
+    public User(String provider, String providerId, String nickname, Role role) {
         this.provider = provider;
         this.providerId = providerId;
         this.nickname = nickname;
+        this.role = role != null ? role : Role.USER;
+    }
+
+    public User updateNickname(String nickname) {
+        this.nickname = nickname;
+        return this;
     }
 }
