@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/save")
+@RequestMapping("/api/save")
 @RequiredArgsConstructor
 public class SaveController {
 
