@@ -1,11 +1,17 @@
 spring:
   application:
     name: BE
+    security:
+      oauth2:
+        client:
+          registration:
+            kakao:
+            naver:
 
   datasource:
     url: jdbc:mysql://localhost:3307/db
-    username: capick
-    password: 1234
+    username: ${DB_USER}
+    password: ${DB_PASSWORD}
     driver-class-name: com.mysql.cj.jdbc.Driver
 
   jpa:
