@@ -8,6 +8,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -25,6 +27,15 @@ public class CakeReference {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cake_store_id")
     private CakeStore cakeStore;
+
+    @OneToMany(mappedBy = "cakeReference")
+    private List<DetailReference> detailReferences;
+
+    @OneToMany(mappedBy = "cakeReference")
+    private List<MoodReference> moodReferences;
+
+    @OneToMany(mappedBy = "cakeReference")
+    private List<TargetReference> targetReferences;
 
     @Builder
     public CakeReference(String instagramEmbed,
