@@ -60,3 +60,22 @@ jwt:
 app:
   oauth2:
     redirect-uri: ${FRONTEND_REDIRECT_URI:http://localhost:3000/home}
+    failure-redirect-uri: ${FRONTEND_FAILURE_REDIRECT_URI:http://localhost:3000/login?error=1}
+
+  cookie:
+    secure: ${COOKIE_SECURE:false}
+    same-site: ${COOKIE_SAME_SITE:Lax}
+    domain: ${COOKIE_DOMAIN:}
+  cors:
+    allowed-origin: ${FRONTEND_ORIGIN:http://localhost:3000}
+
+---
+
+  spring:
+    config:
+      activate:
+        on-profile: prod
+  app:
+    cookie:
+      secure: true
+      same-site: None
