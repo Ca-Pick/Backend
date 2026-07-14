@@ -44,9 +44,9 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
 
   jpa:
-    defer-datasource-initialization: true
     hibernate:
       ddl-auto: update
+    defer-datasource-initialization: true
   data:
     redis:
       host: ${REDIS_HOST:localhost}
