@@ -22,7 +22,6 @@ services:
       - FRONTEND_REDIRECT_URI=${FRONTEND_REDIRECT_URI}
       - FRONTEND_FAILURE_REDIRECT_URI=${FRONTEND_FAILURE_REDIRECT_URI}
       - FRONTEND_ORIGIN=${FRONTEND_ORIGIN}
-      - SPRING_PROFILES_ACTIVE=prod
     healthcheck:
       test: ["CMD", "wget", "--spider", "-q", "http://localhost:8080/actuator/health"]
       interval: 30s
