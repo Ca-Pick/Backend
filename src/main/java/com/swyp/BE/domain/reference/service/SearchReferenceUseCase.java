@@ -33,6 +33,7 @@ public class SearchReferenceUseCase {
 
         List<SearchResponse.InstagramEmbedInfo> cakes = byCake.stream()
                 .map(cake -> SearchResponse.InstagramEmbedInfo.of(
+                        cake.getId(),
                         cake.getInstagramEmbed(),
                         cake.getDetailReferences().stream()
                                 .map(DetailReference::getDecoration)

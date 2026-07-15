@@ -63,6 +63,7 @@ public class ReferenceApiDocumentation {
                                           "data": {
                                               "cakes": [
                                                   {
+                                                      "cakeId": 1,
                                                       "instagramEmbed": "https://www.instagram.com/p/DFxF4K8yG6D/J2",
                                                       "cakedetailtags": [
                                                           "리본",
