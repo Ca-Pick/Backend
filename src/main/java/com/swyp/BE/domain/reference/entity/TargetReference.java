@@ -21,11 +21,4 @@ public class TargetReference {
     @JoinColumn(name = "cake_reference_id")
     private CakeReference cakeReference;
 
-    @Builder
-    public TargetReference(String target, CakeReference cakeReference) {
-
-        this.target = target;
-        this.cakeReference = cakeReference;
-    }
-
 }

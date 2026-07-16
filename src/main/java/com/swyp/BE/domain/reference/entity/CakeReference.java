@@ -3,10 +3,7 @@ package com.swyp.BE.domain.reference.entity;
 
 import com.swyp.BE.global.entity.BaseTimeEntity;
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.List;
 
@@ -37,15 +34,4 @@ public class CakeReference {
     @OneToMany(mappedBy = "cakeReference")
     private List<TargetReference> targetReferences;
 
-    @Builder
-    public CakeReference(String instagramEmbed,
-                         String price, String orderDate, String place,
-                         String shape, String color, CakeStore cakeStore) {
-
-        this.instagramEmbed = instagramEmbed;
-        this.place = place;
-        this.shape = shape;
-        this.color = color;
-        this.cakeStore = cakeStore;
-    }
 }

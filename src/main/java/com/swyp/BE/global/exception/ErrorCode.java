@@ -27,7 +27,10 @@ public enum ErrorCode {
     CONFLICT(HttpStatus.CONFLICT, "CONFLICT", "요청이 현재 리소스 상태와 충돌합니다."),
 
     // 500 INTERNAL_SERVER_ERROR
-    INTERNAL_SERVER_ERROR(HttpStatus.INTERNAL_SERVER_ERROR, "INTERNAL_SERVER_ERROR", "서버 내부 오류가 발생했습니다.");
+    INTERNAL_SERVER_ERROR(HttpStatus.INTERNAL_SERVER_ERROR, "INTERNAL_SERVER_ERROR", "서버 내부 오류가 발생했습니다."),
+
+    // 케이크 관련 에러
+    REFERENCE_NOT_FOUND(HttpStatus.NOT_FOUND, "REFERENCE_NOT_FOUND", "케이크 또는 가게를 찾을 수 없습니다.");
 
     /**
      * 상태 코드

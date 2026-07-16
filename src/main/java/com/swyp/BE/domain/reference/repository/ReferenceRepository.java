@@ -6,6 +6,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 public interface ReferenceRepository extends JpaRepository<CakeReference, Long> {
 
@@ -32,5 +34,30 @@ public interface ReferenceRepository extends JpaRepository<CakeReference, Long> 
             @Param("mood") String mood,
             @Param("detailTags") List<String> detailTags);
 
+    @Query("""
+        select c
+        from CakeReference c
+        join c.targetReferences
+        join c.moodReferences
+        join c.detailReferences
+        where c.id = :referenceId
+    """)
+    Optional<CakeReference> findDetailById(@Param("referenceId") Long referenceId);
+
+//    @Query("""SELECT DISTINCT r
+//
+//    FROM CakeReference r
+//
+//    JOIN FETCH r.store
+//
+//    LEFT JOIN FETCH r.moods
+//
+//    LEFT JOIN FETCH r.targets
+//
+//    WHERE r.id = :referenceId
+//
+//    """)
+//
+//    Optional<CakeReference> findDetailById(Long referenceId);
 
 }
