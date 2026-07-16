@@ -25,7 +25,7 @@ public class ReferenceController {
 
 
     @ReferenceApiDocumentation.CakeDoc
-    @GetMapping("/search")
+    @PostMapping("/search")
     public ApiResponse<SearchResponse> searchReferences(@Valid @RequestBody SearchRequest request) {
 
         return ApiResponse.success(searchReferenceUseCase.excute(request));
