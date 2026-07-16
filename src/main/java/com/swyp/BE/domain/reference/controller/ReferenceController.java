@@ -31,12 +31,14 @@ public class ReferenceController {
         return ApiResponse.success(searchReferenceUseCase.excute(request));
     }
 
+    @ReferenceApiDocumentation.DetailCakeDoc
     @GetMapping("/{referenceId}")
     public ApiResponse<DetailResponse> detailReference(@PathVariable Long referenceId) {
 
         return ApiResponse.success(detailReferenceUseCase.excute(referenceId));
     }
 
+    @ReferenceApiDocumentation.RecommendCakeDoc
     @GetMapping("/recommend")
     public ApiResponse<RecommendResponse> recommendReference() {
 
