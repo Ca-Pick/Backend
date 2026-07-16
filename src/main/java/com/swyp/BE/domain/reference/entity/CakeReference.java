@@ -21,6 +21,8 @@ public class CakeReference {
     private String shape;
     private String color;
 
+    private String theme;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cake_store_id")
     private CakeStore cakeStore;

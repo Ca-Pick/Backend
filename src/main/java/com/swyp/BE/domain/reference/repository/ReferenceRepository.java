@@ -44,20 +44,24 @@ public interface ReferenceRepository extends JpaRepository<CakeReference, Long> 
     """)
     Optional<CakeReference> findDetailById(@Param("referenceId") Long referenceId);
 
-//    @Query("""SELECT DISTINCT r
-//
-//    FROM CakeReference r
-//
-//    JOIN FETCH r.store
-//
-//    LEFT JOIN FETCH r.moods
-//
-//    LEFT JOIN FETCH r.targets
-//
-//    WHERE r.id = :referenceId
-//
-//    """)
-//
-//    Optional<CakeReference> findDetailById(Long referenceId);
+    @Query("""
+        select c
+        from CakeReference c
+        where c.theme = "생일"
+    """)
+    List<CakeReference> findBirthday();
 
+    @Query("""
+        select c
+        from CakeReference c
+        where c.theme = "기념일"
+    """)
+    List<CakeReference> findCelebration();
+
+    @Query("""
+        select c
+        from CakeReference c
+        where c.theme = "졸업/입학"
+    """)
+    List<CakeReference> findAcademic();
 }

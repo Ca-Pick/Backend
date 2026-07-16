@@ -28,12 +28,13 @@ INSERT INTO cake_reference (
     instagram_embed,
     place,
     shape,
-    color
+    color,
+    theme
 ) VALUES
-      (1, 1, 'https://www.instagram.com/p/DFxF4K8yG6D/J2', '강남', '기본형', '파스텔'),
-      (2, 2, 'https://www.instagram.com/p/DaDC3ckTr7v/?utm_source=ig_web_copy_link', '강남', '입체형', '파스텔'),
-      (3, 3, 'https://www.instagram.com/p/DaR64RlMKE1/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==', '강남', '기본형', '파스텔'),
-      (4, 3, 'https://www.instagram.com/p/DY1O9Vlsp1G/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==', '강남', '입체형', '모노톤');
+      (1, 1, 'https://www.instagram.com/p/DFxF4K8yG6D/J2', '강남', '기본형', '파스텔', '생일'),
+      (2, 2, 'https://www.instagram.com/p/DaDC3ckTr7v/?utm_source=ig_web_copy_link', '강남', '입체형', '파스텔', '기념일'),
+      (3, 3, 'https://www.instagram.com/p/DaR64RlMKE1/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==', '강남', '기본형', '파스텔', '생일'),
+      (4, 3, 'https://www.instagram.com/p/DY1O9Vlsp1G/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==', '강남', '입체형', '모노톤', '기념일');
 
 
 
