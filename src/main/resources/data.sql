@@ -5,10 +5,21 @@ INSERT INTO cake_store (
     name,
     address,
     latitude,
-    longitude
+    longitude,
+    price,
+    schedule
 ) VALUES
-      (1, 'https://www.instagram.com/deflora_cake/', 'Deflora', '서울시 강남구 봉은사로 26길 28 1층', 37.505373, 127.037142),
-      (2, 'https://www.instagram.com/saenguabang_bomnal/', '생과방 봄날', '서울 서초구 강남대로2길 75 학성빌딩 101호 sweet bomnal', 37.47648, 127.03451);
+      (1, 'https://www.instagram.com/deflora_cake/', 'Deflora', '서울시 강남구 봉은사로 26길 28 1층', 37.505373, 127.037142,
+       "미니 실타래 기준 43,000원~46,000원 예시 /W 최종가는 기본금액+난이도+맛 종류로 산정",
+       "픽업 3일 전 / 주말·시즌은 1주일 전 권장"),
+      (2, 'https://www.instagram.com/saenguabang_bomnal/', '생과방 봄날', '서울 서초구 강남대로2길 75 학성빌딩 101호 sweet bomnal', 37.47648, 127.03451,
+       "나비앉은 달항아리 83,000원/벚꽃흩날리는 달항아리 83,000원/청자케이크 98,000원/돌띠 달항아리 93,000원/디테일 추가 10,000원/화병 꽃 추가 30,000원/1호 사이즈업 40,000원",
+       "7일 전 주문 권장"),
+      (3, 'https://www.instagram.com/dalccomi/', '달꼬미', '서울특별시 강남구 강남대로122길 30-10 1층 달꼬미 논현점', 37.5089, 127.0248,
+       "한입 5cm 13,000원~/도시락 11cm 23,000원~/미니 13cm 45,000원~/1호 15cm 55,000원~/2호 18cm 65,000원~/미니2단 90,000원~/2단 120,000원~/맛·디자인·사이즈에 따라 추가금 발생",
+       "최대 2주 전부터 주문 가능/수·목은 이틀 전 권장/금·토·화는 수요일까지 권장/하루 전 주문은 17시까지 재료 여유 시 가능");
+
+
 
 -- 2. 케이크 레퍼런스 데이터
 INSERT INTO cake_reference (
@@ -17,10 +28,14 @@ INSERT INTO cake_reference (
     instagram_embed,
     place,
     shape,
-    color
+    color,
+    theme
 ) VALUES
-      (1, 1, 'https://www.instagram.com/p/DFxF4K8yG6D/J2', '강남', '기본형', '파스텔'),
-      (2, 2, 'https://www.instagram.com/p/DaDC3ckTr7v/?utm_source=ig_web_copy_link', '강남', '입체형', '파스텔');
+      (1, 1, 'https://www.instagram.com/p/DFxF4K8yG6D/J2', '강남', '기본형', '파스텔', '생일'),
+      (2, 2, 'https://www.instagram.com/p/DaDC3ckTr7v/?utm_source=ig_web_copy_link', '강남', '입체형', '파스텔', '기념일'),
+      (3, 3, 'https://www.instagram.com/p/DaR64RlMKE1/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==', '강남', '기본형', '파스텔', '생일'),
+      (4, 3, 'https://www.instagram.com/p/DY1O9Vlsp1G/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==', '강남', '입체형', '모노톤', '기념일');
+
 
 
 -- 3. 타켓 데이터
@@ -30,10 +45,11 @@ INSERT INTO target_reference (
 ) VALUES
       (1, '친구'),
       (1, '연인'),
-      (1, '서포트'),
       (2, '가족'),
-      (2, '연인'),
-      (2, '서포트');
+      (3, '친구'),
+      (3, '연인'),
+      (4, '연인');
+
 
 -- 3. 분위기 데이터
 INSERT INTO mood_reference (
@@ -43,7 +59,11 @@ INSERT INTO mood_reference (
       (1, '귀여운'),
       (1, '개성있는'),
       (2, '심플'),
-      (2, '개성있는');
+      (2, '개성있는'),
+      (3, '심플'),
+      (3, '귀여운'),
+      (4, '심플'),
+      (4, '개성있는');
 
 -- 4. 세부 장식 데이터
 INSERT INTO detail_reference (
@@ -80,4 +100,37 @@ INSERT INTO detail_reference (
       (2, '생화'),
       (2, '화병'),
       (2, '청자'),
-      (2, '돌띠');
+      (2, '돌띠'),
+      (3, '리본'),
+      (3, '핑크리본'),
+      (3, '꽃'),
+      (3, '플라워'),
+      (3, '생화'),
+      (3, '장미'),
+      (3, '핑크'),
+      (3, '화이트'),
+      (3, '크림'),
+      (3, '물방울크림'),
+      (3, '버블크림'),
+      (3, '레터링'),
+      (3, '생일'),
+      (3, '러블리'),
+      (3, '단아한'),
+      (3, '미니멀'),
+      (4, '웨딩'),
+      (4, '결혼'),
+      (4, '곰돌이'),
+      (4, '신랑신부'),
+      (4, '오브제'),
+      (4, '스탠딩'),
+      (4, '레터링'),
+      (4, '화이트'),
+      (4, '블랙'),
+      (4, '꽃'),
+      (4, '플라워'),
+      (4, '진주'),
+      (4, '프릴크림'),
+      (4, '실타래크림'),
+      (4, '드레이프'),
+      (4, '귀여운'),
+      (4, '기념일');

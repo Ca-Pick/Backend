@@ -12,19 +12,20 @@ import java.util.List;
 @Builder
 public class SearchResponse {
 
-    private final List<String> tags;
-    private final List<InstagramEmbedInfo> cakes;
+    private List<String> tags;
+    private List<InstagramEmbedInfo> cakes;
 
 
     @Getter
     @AllArgsConstructor
     public static class InstagramEmbedInfo {
 
+        private Long cakeId;
         private String instagramEmbed;
         private List<String> cakedetailtags;
 
-        public static InstagramEmbedInfo of(String instagramEmbed, List<String> cakedetailtags) {
-            return new InstagramEmbedInfo(instagramEmbed, cakedetailtags);
+        public static InstagramEmbedInfo of(Long cakeId, String instagramEmbed, List<String> cakedetailtags) {
+            return new InstagramEmbedInfo(cakeId, instagramEmbed, cakedetailtags);
         }
     }
 

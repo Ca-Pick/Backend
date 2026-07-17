@@ -33,7 +33,10 @@ public enum ErrorCode {
     EXPIRED_REFRESH_TOKEN(HttpStatus.UNAUTHORIZED, "EXPIRED_REFRESH_TOKEN", "리프레시 토큰이 만료되었거나 존재하지 않습니다."),
 
     // 500 INTERNAL_SERVER_ERROR
-    INTERNAL_SERVER_ERROR(HttpStatus.INTERNAL_SERVER_ERROR, "INTERNAL_SERVER_ERROR", "서버 내부 오류가 발생했습니다.");
+    INTERNAL_SERVER_ERROR(HttpStatus.INTERNAL_SERVER_ERROR, "INTERNAL_SERVER_ERROR", "서버 내부 오류가 발생했습니다."),
+
+    // 케이크 관련 에러
+    REFERENCE_NOT_FOUND(HttpStatus.NOT_FOUND, "REFERENCE_NOT_FOUND", "케이크 또는 가게를 찾을 수 없습니다.");
 
     /**
      * 상태 코드

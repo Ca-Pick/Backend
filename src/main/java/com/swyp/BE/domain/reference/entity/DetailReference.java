@@ -2,10 +2,7 @@ package com.swyp.BE.domain.reference.entity;
 
 import com.swyp.BE.global.entity.BaseTimeEntity;
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Entity
 @Getter
@@ -22,10 +19,4 @@ public class DetailReference {
     @JoinColumn(name = "cake_reference_id")
     private CakeReference cakeReference;
 
-    @Builder
-    public DetailReference(String decoration, CakeReference cakeReference) {
-
-        this.decoration = decoration;
-        this.cakeReference = cakeReference;
-    }
 }
