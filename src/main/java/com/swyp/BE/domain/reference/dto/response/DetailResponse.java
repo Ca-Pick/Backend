@@ -33,9 +33,10 @@ public class DetailResponse {
 
         private Long cakeId;
         private String instagramEmbed;
+        private boolean saved;
 
-        public static DetailResponse.CakeListInfo of(Long cakeId, String instagramEmbed) {
-            return new DetailResponse.CakeListInfo(cakeId, instagramEmbed);
+        public static DetailResponse.CakeListInfo of(Long cakeId, String instagramEmbed, boolean saved) {
+            return new DetailResponse.CakeListInfo(cakeId, instagramEmbed, saved);
         }
     }
 

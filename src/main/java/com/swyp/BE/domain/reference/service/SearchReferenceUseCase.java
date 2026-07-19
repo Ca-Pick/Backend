@@ -5,22 +5,25 @@ import com.swyp.BE.domain.reference.dto.request.SearchRequest;
 import com.swyp.BE.domain.reference.dto.response.SearchResponse;
 import com.swyp.BE.domain.reference.entity.CakeReference;
 import com.swyp.BE.domain.reference.entity.DetailReference;
+import com.swyp.BE.domain.reference.repository.CakeSaveRepository;
 import com.swyp.BE.domain.reference.repository.ReferenceRepository;
+
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-@Slf4j
 public class SearchReferenceUseCase {
 
     private final ReferenceRepository referenceRepository;
+    private final CakeSaveRepository cakeSaveRepository;
 
-    public SearchResponse excute(SearchRequest request) {
+    public SearchResponse excute(Long userId, SearchRequest request) {
 
         List<CakeReference> byCake = referenceRepository.findByCake(
                 request.getPlace(),
@@ -30,16 +33,25 @@ public class SearchReferenceUseCase {
                 request.getMood(),
                 request.getDetailTags());
 
+        Collections.shuffle(byCake);
 
         List<SearchResponse.InstagramEmbedInfo> cakes = byCake.stream()
-                .map(cake -> SearchResponse.InstagramEmbedInfo.of(
-                        cake.getId(),
-                        cake.getInstagramEmbed(),
-                        cake.getDetailReferences().stream()
-                                .map(DetailReference::getDecoration)
-                                    .toList()))
-                .toList();
+                .map(cake -> {
+                    boolean saved = false;
+                    if (userId != null) {
+                        saved = cakeSaveRepository.existsByUserIdAndCakeReferenceId(userId, cake.getId());
+                    }
 
+                    List<String> detailTags = cake.getDetailReferences().stream()
+                            .map(DetailReference::getDecoration)
+                            .filter(request.getDetailTags()::contains)
+                            .toList();
+                    int detailCount = detailTags.size();
+
+                    return SearchResponse.InstagramEmbedInfo.of(
+                            cake.getId(), cake.getInstagramEmbed(), saved, detailTags, detailCount);
+                }).sorted(Comparator.comparingInt(SearchResponse.InstagramEmbedInfo::getCakeDetailCount)
+                        .reversed()).toList();
 
         List<String> tags = new ArrayList<>();
         tags.add(request.getPlace());

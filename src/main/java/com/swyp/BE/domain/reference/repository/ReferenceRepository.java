@@ -24,7 +24,7 @@ public interface ReferenceRepository extends JpaRepository<CakeReference, Long> 
         and c.shape = :shape
         and c.color = :color
         and m.mood = :mood
-        and d.decoration in :detailTags
+        and (:detailTags is null or d.decoration in :detailTags)
     """)
     List<CakeReference> findByCake(
             @Param("place") String place,

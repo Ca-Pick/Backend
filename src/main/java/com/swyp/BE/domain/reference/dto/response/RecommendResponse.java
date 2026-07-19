@@ -22,9 +22,10 @@ public class RecommendResponse {
 
         private Long cakeId;
         private String instagramEmbed;
+        private boolean saved;
 
-        public static RecommendResponse.ThemeInfo of(Long cakeId, String instagramEmbed) {
-            return new RecommendResponse.ThemeInfo(cakeId, instagramEmbed);
+        public static RecommendResponse.ThemeInfo of(Long cakeId, String instagramEmbed, boolean saved) {
+            return new RecommendResponse.ThemeInfo(cakeId, instagramEmbed, saved);
         }
     }
 

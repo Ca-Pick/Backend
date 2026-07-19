@@ -3,6 +3,7 @@ package com.swyp.BE.domain.reference.service;
 
 import com.swyp.BE.domain.reference.dto.response.DetailResponse;
 import com.swyp.BE.domain.reference.entity.*;
+import com.swyp.BE.domain.reference.repository.CakeSaveRepository;
 import com.swyp.BE.domain.reference.repository.CakeStoreRepository;
 import com.swyp.BE.domain.reference.repository.ReferenceRepository;
 import com.swyp.BE.global.exception.BusinessException;
@@ -20,8 +21,9 @@ public class DetailReferenceUseCase {
 
     private final ReferenceRepository referenceRepository;
     private final CakeStoreRepository cakeStoreRepository;
+    private final CakeSaveRepository cakeSaveRepository;
 
-    public DetailResponse excute(Long referenceId) {
+    public DetailResponse excute(Long userId, Long referenceId) {
 
         CakeReference cake = referenceRepository.findDetailById(referenceId)
                 .orElseThrow(BusinessException::referenceNotFound);
@@ -30,9 +32,15 @@ public class DetailReferenceUseCase {
                 .orElseThrow(BusinessException::referenceNotFound);
 
         List<DetailResponse.CakeListInfo> cakelist = cakeStore.getCakeReferences().stream()
-                .map(c -> DetailResponse.CakeListInfo.of(
-                        c.getId(),
-                        c.getInstagramEmbed()))
+                .map(c -> {
+                    boolean saved = false;
+                    if (userId != null) {
+                        saved = cakeSaveRepository.existsByUserIdAndCakeReferenceId(userId, c.getId());
+                    }
+
+                    return DetailResponse.CakeListInfo.of(c.getId(), c.getInstagramEmbed(), saved);
+
+                })
                 .toList();
 
         List<String> tags = new ArrayList<>();

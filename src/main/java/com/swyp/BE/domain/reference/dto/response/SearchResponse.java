@@ -22,10 +22,12 @@ public class SearchResponse {
 
         private Long cakeId;
         private String instagramEmbed;
-        private List<String> cakedetailtags;
+        private boolean saved;
+        private List<String> cakeDetailTags;
+        private int cakeDetailCount;
 
-        public static InstagramEmbedInfo of(Long cakeId, String instagramEmbed, List<String> cakedetailtags) {
-            return new InstagramEmbedInfo(cakeId, instagramEmbed, cakedetailtags);
+        public static InstagramEmbedInfo of(Long cakeId, String instagramEmbed, boolean saved, List<String> cakeDetailTags, int cakeDetailCount) {
+            return new InstagramEmbedInfo(cakeId, instagramEmbed, saved, cakeDetailTags, cakeDetailCount);
         }
     }
 

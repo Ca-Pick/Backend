@@ -12,6 +12,7 @@ import com.swyp.BE.global.documention.ReferenceApiDocumentation;
 import com.swyp.BE.global.response.ApiResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -26,23 +27,23 @@ public class ReferenceController {
 
     @ReferenceApiDocumentation.CakeDoc
     @PostMapping("/search")
-    public ApiResponse<SearchResponse> searchReferences(@Valid @RequestBody SearchRequest request) {
+    public ApiResponse<SearchResponse> searchReferences(@AuthenticationPrincipal Long userId, @Valid @RequestBody SearchRequest request) {
 
-        return ApiResponse.success(searchReferenceUseCase.excute(request));
+        return ApiResponse.success(searchReferenceUseCase.excute(userId, request));
     }
 
     @ReferenceApiDocumentation.DetailCakeDoc
     @GetMapping("/{referenceId}")
-    public ApiResponse<DetailResponse> detailReference(@PathVariable Long referenceId) {
+    public ApiResponse<DetailResponse> detailReference(@AuthenticationPrincipal Long userId, @PathVariable Long referenceId) {
 
-        return ApiResponse.success(detailReferenceUseCase.excute(referenceId));
+        return ApiResponse.success(detailReferenceUseCase.excute(userId, referenceId));
     }
 
     @ReferenceApiDocumentation.RecommendCakeDoc
     @GetMapping("/recommend")
-    public ApiResponse<RecommendResponse> recommendReference() {
+    public ApiResponse<RecommendResponse> recommendReference(@AuthenticationPrincipal Long userId) {
 
-        return ApiResponse.success(recommendReferenceUseCase.excute());
+        return ApiResponse.success(recommendReferenceUseCase.excute(userId));
     }
 
 
