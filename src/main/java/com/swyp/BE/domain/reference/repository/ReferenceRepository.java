@@ -14,6 +14,24 @@ public interface ReferenceRepository extends JpaRepository<CakeReference, Long> 
 
 
     @Query("""
+        select distinct c
+        from CakeReference c
+        join c.targetReferences t
+        join c.moodReferences m
+        where c.place = :place
+        and t.target = :target
+        and c.shape = :shape
+        and c.color = :color
+        and m.mood = :mood
+    """)
+    List<CakeReference> findByCakeWithoutDetail(
+            @Param("place") String place,
+            @Param("target") String target,
+            @Param("shape") String shape,
+            @Param("color") String color,
+            @Param("mood") String mood);
+
+    @Query("""
         select c
         from CakeReference c
         join c.targetReferences t
@@ -24,7 +42,7 @@ public interface ReferenceRepository extends JpaRepository<CakeReference, Long> 
         and c.shape = :shape
         and c.color = :color
         and m.mood = :mood
-        and (:detailTags is null or d.decoration in :detailTags)
+        and d.decoration in :detailTags
     """)
     List<CakeReference> findByCake(
             @Param("place") String place,

@@ -25,13 +25,24 @@ public class SearchReferenceUseCase {
 
     public SearchResponse excute(Long userId, SearchRequest request) {
 
-        List<CakeReference> byCake = referenceRepository.findByCake(
-                request.getPlace(),
-                request.getTarget(),
-                request.getShape(),
-                request.getColor(),
-                request.getMood(),
-                request.getDetailTags());
+        boolean existDetailTags = request.getDetailTags() != null && !request.getDetailTags().isEmpty();
+
+        List<CakeReference> byCake = existDetailTags
+                ? referenceRepository.findByCake(
+                request.getPlace(), request.getTarget(), request.getShape(),
+                request.getColor(), request.getMood(), request.getDetailTags())
+                : referenceRepository.findByCakeWithoutDetail(
+                request.getPlace(), request.getTarget(), request.getShape(),
+                request.getColor(), request.getMood());
+
+        if (existDetailTags && byCake.isEmpty()) {
+            byCake = referenceRepository.findByCakeWithoutDetail(
+                    request.getPlace(), request.getTarget(), request.getShape(),
+                    request.getColor(), request.getMood());
+            existDetailTags = false;
+        }
+
+        boolean newExistDetailTags = existDetailTags;
 
         Collections.shuffle(byCake);
 
@@ -40,6 +51,10 @@ public class SearchReferenceUseCase {
                     boolean saved = false;
                     if (userId != null) {
                         saved = cakeSaveRepository.existsByUserIdAndCakeReferenceId(userId, cake.getId());
+                    }
+
+                    if (!newExistDetailTags) {
+                        return SearchResponse.InstagramEmbedInfo.of(cake.getId(), cake.getInstagramEmbed(), saved, List.of(), 0);
                     }
 
                     List<String> detailTags = cake.getDetailReferences().stream()
@@ -59,7 +74,9 @@ public class SearchReferenceUseCase {
         tags.add(request.getShape());
         tags.add(request.getColor());
         tags.add(request.getMood());
-        tags.addAll(request.getDetailTags());
+        if (newExistDetailTags) {
+            tags.addAll(request.getDetailTags());
+        }
 
 
         return SearchResponse.from(tags, cakes);
