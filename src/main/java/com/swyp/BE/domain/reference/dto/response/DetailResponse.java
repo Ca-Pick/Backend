@@ -12,6 +12,7 @@ import java.util.List;
 @Builder
 public class DetailResponse {
 
+    private Long cakeId;
     private String instagramEmbed;
 
     private String name;
@@ -23,6 +24,8 @@ public class DetailResponse {
     private BigDecimal longitude;
 
     private String instagramUrl;
+
+    private boolean saved;
 
     private List<DetailResponse.CakeListInfo> cakelists;
 
@@ -40,10 +43,11 @@ public class DetailResponse {
         }
     }
 
-    public static DetailResponse from(String instagramEmbed, String name,
+    public static DetailResponse from(Long cakeId, String instagramEmbed, String name,
                                       List<String> tags, String address, BigDecimal latitude, BigDecimal longitude,
-                                      String instagramUrl, List<DetailResponse.CakeListInfo> cakes) {
+                                      String instagramUrl, boolean saved, List<DetailResponse.CakeListInfo> cakes) {
         return DetailResponse.builder()
+                .cakeId(cakeId)
                 .instagramEmbed(instagramEmbed)
                 .name(name)
                 .tags(tags)
@@ -51,6 +55,7 @@ public class DetailResponse {
                 .latitude(latitude)
                 .longitude(longitude)
                 .instagramUrl(instagramUrl)
+                .saved(saved)
                 .cakelists(cakes)
                 .build();
     }

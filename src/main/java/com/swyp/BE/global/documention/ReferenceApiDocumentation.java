@@ -39,7 +39,7 @@ public class ReferenceApiDocumentation {
                                               "shape": "기본형",
                                               "color": "파스텔",
                                               "mood": "귀여운",
-                                              "detailTags": ["리본"]
+                                              "detailTags": ["리본", "블랙리본"]
                                         }
                                     """
                             )
@@ -58,40 +58,42 @@ public class ReferenceApiDocumentation {
                                     name = "SUCCESS",
                                     description = "주문서 레퍼런스 조회 성공",
                                     value = """
-                                        {
-                                          "success": true,
-                                          "data": {
-                                              "cakes": [
-                                                  {
-                                                      "cakeId": 1,
-                                                      "instagramEmbed": "https://www.instagram.com/p/DFxF4K8yG6D/J2",
-                                                      "cakedetailtags": [
-                                                          "리본",
-                                                          "시스루",
-                                                          "블랙리본",
-                                                          "하트",
-                                                          "블랙",
-                                                          "핑크",
-                                                          "블랙핑크",
-                                                          "실타래크림",
-                                                          "레터링",
-                                                          "러블리",
-                                                          "시크",
-                                                          "키치"
-                                                      ]
-                                                  }
-                                              ],
-                                              "tags": [
-                                                  "강남",
-                                                  "친구",
-                                                  "기본형",
-                                                  "파스텔",
-                                                  "귀여운",
-                                                  "리본"
-                                              ]
-                                          },
-                                          "timestamp": "2026-07-14T21:08:52"
-                                        }
+                                       {
+                                                     "success": true,
+                                                     "data": {
+                                                         "cakes": [
+                                                             {
+                                                                 "cakeId": 1,
+                                                                 "instagramEmbed": "https://www.instagram.com/p/DFxF4K8yG6D/J2",
+                                                                 "saved": false,
+                                                                 "cakeDetailTags": [
+                                                                     "리본",
+                                                                     "블랙리본"
+                                                                 ],
+                                                                 "cakeDetailCount": 2
+                                                             },
+                                                             {
+                                                                 "cakeId": 3,
+                                                                 "instagramEmbed": "https://www.instagram.com/p/DaR64RlMKE1/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
+                                                                 "saved": false,
+                                                                 "cakeDetailTags": [
+                                                                     "리본"
+                                                                 ],
+                                                                 "cakeDetailCount": 1
+                                                             }
+                                                         ],
+                                                         "tags": [
+                                                             "강남",
+                                                             "친구",
+                                                             "기본형",
+                                                             "파스텔",
+                                                             "귀여운",
+                                                             "리본",
+                                                             "블랙리본"
+                                                         ]
+                                                     },
+                                                     "timestamp": "2026-07-20T01:42:02"
+                                                 }
                                     """
                             )
                     )
@@ -137,55 +139,46 @@ public class ReferenceApiDocumentation {
                                     name = "SUCCESS",
                                     description = "케이크 상세 페이지 조회 성공",
                                     value = """
-                                        {
-                                                    "success": true,
-                                                    "data": {
-                                                        "address": "서울특별시 강남구 강남대로122길 30-10 1층 달꼬미 논현점",
-                                                        "cakelists": [
-                                                            {
-                                                                "cakeId": 3,
-                                                                "instagramEmbed": "https://www.instagram.com/p/DaR64RlMKE1/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
-                                                            },
-                                                            {
-                                                                "cakeId": 4,
-                                                                "instagramEmbed": "https://www.instagram.com/p/DY1O9Vlsp1G/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
-                                                            }
-                                                        ],
-                                                        "instagramEmbed": "https://www.instagram.com/p/DaR64RlMKE1/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
-                                                        "instagramUrl": "https://www.instagram.com/dalccomi/",
-                                                        "latitude": 37.51,
-                                                        "longitude": 127.02,
-                                                        "name": "달꼬미",
-                                                        "price": "한입 5cm 13,000원~/도시락 11cm 23,000원~/미니 13cm 45,000원~/1호 15cm 55,000원~/2호 18cm 65,000원~/미니2단 90,000원~/2단 120,000원~/맛·디자인·사이즈에 따라 추가금 발생",
-                                                        "schedule": "최대 2주 전부터 주문 가능/수·목은 이틀 전 권장/금·토·화는 수요일까지 권장/하루 전 주문은 17시까지 재료 여유 시 가능",
-                                                        "tags": [
-                                                            "강남",
-                                                            "친구",
-                                                            "연인",
-                                                            "기본형",
-                                                            "파스텔",
-                                                            "심플",
-                                                            "귀여운",
-                                                            "리본",
-                                                            "핑크리본",
-                                                            "꽃",
-                                                            "플라워",
-                                                            "생화",
-                                                            "장미",
-                                                            "핑크",
-                                                            "화이트",
-                                                            "크림",
-                                                            "물방울크림",
-                                                            "버블크림",
-                                                            "레터링",
-                                                            "생일",
-                                                            "러블리",
-                                                            "단아한",
-                                                            "미니멀"
-                                                        ]
-                                                    },
-                                                    "timestamp": "2026-07-17T02:30:06"
-                                                    }
+                                            {
+                                                "success": true,
+                                                "data": {
+                                                    "address": "서울시 강남구 봉은사로 26길 28 1층",
+                                                    "cakelists": [
+                                                        {
+                                                            "cakeId": 1,
+                                                            "instagramEmbed": "https://www.instagram.com/p/DFxF4K8yG6D/J2",
+                                                            "saved": false
+                                                        }
+                                                    ],
+                                                    "instagramEmbed": "https://www.instagram.com/p/DFxF4K8yG6D/J2",
+                                                    "instagramUrl": "https://www.instagram.com/deflora_cake/",
+                                                    "latitude": 37.51,
+                                                    "longitude": 127.04,
+                                                    "name": "Deflora",
+                                                    "tags": [
+                                                        "강남",
+                                                        "친구",
+                                                        "연인",
+                                                        "기본형",
+                                                        "파스텔",
+                                                        "귀여운",
+                                                        "개성있는",
+                                                        "리본",
+                                                        "시스루",
+                                                        "블랙리본",
+                                                        "하트",
+                                                        "블랙",
+                                                        "핑크",
+                                                        "블랙핑크",
+                                                        "실타래크림",
+                                                        "레터링",
+                                                        "러블리",
+                                                        "시크",
+                                                        "키치"
+                                                    ]
+                                                },
+                                                "timestamp": "2026-07-20T01:46:12"
+                                            }
                                     """
                             )
                     )

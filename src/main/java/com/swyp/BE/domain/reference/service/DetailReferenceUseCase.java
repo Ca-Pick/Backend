@@ -31,6 +31,8 @@ public class DetailReferenceUseCase {
         CakeStore cakeStore = cakeStoreRepository.findById(cake.getCakeStore().getId())
                 .orElseThrow(BusinessException::referenceNotFound);
 
+        log.info(String.valueOf(userId));
+
         List<DetailResponse.CakeListInfo> cakelist = cakeStore.getCakeReferences().stream()
                 .map(c -> {
                     boolean saved = false;
@@ -54,9 +56,11 @@ public class DetailReferenceUseCase {
         tags.addAll(cake.getDetailReferences().stream()
                 .map(DetailReference::getDecoration).toList());
 
-        return DetailResponse.from(cake.getInstagramEmbed(), cake.getCakeStore().getName(),
+        boolean saved = cakeSaveRepository.existsByUserIdAndCakeReferenceId(userId, referenceId);
+
+        return DetailResponse.from(cake.getId(), cake.getInstagramEmbed(), cake.getCakeStore().getName(),
                 tags, cake.getCakeStore().getAddress(), cake.getCakeStore().getLatitude(),
-                cake.getCakeStore().getLongitude(), cake.getCakeStore().getInstagramUrl(),
+                cake.getCakeStore().getLongitude(), cake.getCakeStore().getInstagramUrl(), saved,
                 cakelist);
 
     }
