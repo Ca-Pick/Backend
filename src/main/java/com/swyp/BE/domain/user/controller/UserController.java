@@ -3,6 +3,7 @@ package com.swyp.BE.domain.user.controller;
 import com.swyp.BE.domain.user.dto.request.NicknameUpdateRequest;
 import com.swyp.BE.domain.user.dto.response.UserInfoResponse;
 import com.swyp.BE.domain.user.service.UserService;
+import com.swyp.BE.global.documention.UserApiDocumentation;
 import com.swyp.BE.global.exception.BusinessException;
 import com.swyp.BE.global.exception.ErrorCode;
 import com.swyp.BE.global.response.ApiResponse;
@@ -28,6 +29,7 @@ public class UserController {
     private final UserService userService;
     private final com.swyp.BE.global.util.CookieUtil cookieUtil;
 
+    @UserApiDocumentation.UserInfoDoc
     @GetMapping("/me")
     public ApiResponse<UserInfoResponse> getMyInfo(Authentication authentication) {
         if (authentication == null || authentication.getPrincipal() == null) {
@@ -38,6 +40,7 @@ public class UserController {
         return ApiResponse.success(userService.getMyInfo(userId));
     }
 
+    @UserApiDocumentation.NicknameUpdateDoc
     @PatchMapping("/nickname")
     public ApiResponse<Void> updateNickname(
             Authentication authentication,
@@ -52,6 +55,7 @@ public class UserController {
         return ApiResponse.success();
     }
 
+    @UserApiDocumentation.WithdrawDoc
     @DeleteMapping("/me")
     public ResponseEntity<ApiResponse<Void>> withdraw(
             Authentication authentication,
