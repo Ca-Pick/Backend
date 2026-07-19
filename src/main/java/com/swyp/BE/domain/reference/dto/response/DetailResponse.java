@@ -18,9 +18,6 @@ public class DetailResponse {
 
     private List<String> tags;
 
-    private String price;
-    private String schedule;
-
     private String address;
     private BigDecimal latitude;
     private BigDecimal longitude;
@@ -43,15 +40,12 @@ public class DetailResponse {
     }
 
     public static DetailResponse from(String instagramEmbed, String name,
-                                      List<String> tags, String price, String schedule,
-                                      String address, BigDecimal latitude, BigDecimal longitude,
+                                      List<String> tags, String address, BigDecimal latitude, BigDecimal longitude,
                                       String instagramUrl, List<DetailResponse.CakeListInfo> cakes) {
         return DetailResponse.builder()
                 .instagramEmbed(instagramEmbed)
                 .name(name)
                 .tags(tags)
-                .price(price)
-                .schedule(schedule)
                 .address(address)
                 .latitude(latitude)
                 .longitude(longitude)

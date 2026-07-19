@@ -47,8 +47,7 @@ public class DetailReferenceUseCase {
                 .map(DetailReference::getDecoration).toList());
 
         return DetailResponse.from(cake.getInstagramEmbed(), cake.getCakeStore().getName(),
-                tags, cake.getCakeStore().getPrice(), cake.getCakeStore().getSchedule() ,
-                cake.getCakeStore().getAddress(), cake.getCakeStore().getLatitude(),
+                tags, cake.getCakeStore().getAddress(), cake.getCakeStore().getLatitude(),
                 cake.getCakeStore().getLongitude(), cake.getCakeStore().getInstagramUrl(),
                 cakelist);
 
