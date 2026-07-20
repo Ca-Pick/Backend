@@ -2,10 +2,12 @@ package com.swyp.BE.domain.reference.controller;
 
 
 import com.swyp.BE.domain.reference.dto.request.SearchRequest;
+import com.swyp.BE.domain.reference.dto.response.DecorationsResponse;
 import com.swyp.BE.domain.reference.dto.response.DetailResponse;
 import com.swyp.BE.domain.reference.dto.response.RecommendResponse;
 import com.swyp.BE.domain.reference.dto.response.SearchResponse;
 import com.swyp.BE.domain.reference.service.DetailReferenceUseCase;
+import com.swyp.BE.domain.reference.service.DetailTagsUseCase;
 import com.swyp.BE.domain.reference.service.RecommendReferenceUseCase;
 import com.swyp.BE.domain.reference.service.SearchReferenceUseCase;
 import com.swyp.BE.global.documention.ReferenceApiDocumentation;
@@ -23,7 +25,14 @@ public class ReferenceController {
     private final SearchReferenceUseCase searchReferenceUseCase;
     private final DetailReferenceUseCase detailReferenceUseCase;
     private final RecommendReferenceUseCase recommendReferenceUseCase;
+    private final DetailTagsUseCase detailTagsUseCase;
 
+    @ReferenceApiDocumentation.DetailTagsDoc
+    @GetMapping("/detailtags")
+    public ApiResponse<DecorationsResponse> detailTags() {
+
+        return ApiResponse.success(detailTagsUseCase.excute());
+    }
 
     @ReferenceApiDocumentation.CakeDoc
     @PostMapping("/search")

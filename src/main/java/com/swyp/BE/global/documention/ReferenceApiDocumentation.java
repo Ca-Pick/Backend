@@ -15,6 +15,109 @@ import java.lang.annotation.Target;
 
 public class ReferenceApiDocumentation {
 
+
+    /**
+     * 요소태그 전체 조회 API 문서
+     */
+    @Target(ElementType.METHOD)
+    @Retention(RetentionPolicy.RUNTIME)
+    @Operation(
+            summary = "요소태그 전체 조회 API",
+            description = "요소태그를 전체 조회합니다."
+    )
+    @ApiResponses({
+            // SUCCESS
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "요소태그 전체 조회 성공",
+                    content = @Content(
+                            mediaType = "application/json",
+                            schema = @Schema(implementation = com.swyp.BE.global.response.ApiResponse.class),
+                            examples = @ExampleObject(
+                                    name = "SUCCESS",
+                                    description = "요소 태그 조회 성공",
+                                    value = """
+                                         {
+                                                                  "success": true,
+                                                                  "data": {
+                                                                      "decorations": [
+                                                                          "리본",
+                                                                          "시스루",
+                                                                          "블랙리본",
+                                                                          "하트",
+                                                                          "블랙",
+                                                                          "핑크",
+                                                                          "블랙핑크",
+                                                                          "실타래크림",
+                                                                          "레터링",
+                                                                          "러블리",
+                                                                          "시크",
+                                                                          "키치",
+                                                                          "달항아리",
+                                                                          "전통",
+                                                                          "꽃",
+                                                                          "벚꽃",
+                                                                          "나비",
+                                                                          "보라",
+                                                                          "화이트",
+                                                                          "라벤더",
+                                                                          "플라워",
+                                                                          "오브제",
+                                                                          "도자기",
+                                                                          "한식디저트",
+                                                                          "고급스러운",
+                                                                          "단아한",
+                                                                          "봄",
+                                                                          "생화",
+                                                                          "화병",
+                                                                          "청자",
+                                                                          "돌띠",
+                                                                          "핑크리본",
+                                                                          "장미",
+                                                                          "크림",
+                                                                          "물방울크림",
+                                                                          "버블크림",
+                                                                          "생일",
+                                                                          "미니멀",
+                                                                          "웨딩",
+                                                                          "결혼",
+                                                                          "곰돌이",
+                                                                          "신랑신부",
+                                                                          "스탠딩",
+                                                                          "진주",
+                                                                          "프릴크림",
+                                                                          "드레이프",
+                                                                          "귀여운",
+                                                                          "기념일",
+                                                                          "테스트"
+                                                                      ]
+                                                                  },
+                                                                  "timestamp": "2026-07-20T19:27:52"
+                                                              }
+                                    """
+                            )
+                    )
+            ),
+
+            // INTERNAL_SERVER_ERROR
+            @ApiResponse(
+                    responseCode = "500",
+                    description = "서버 내부 오류",
+                    content = @Content(
+                            mediaType = "application/json",
+                            examples = @ExampleObject("""
+                {
+                  "success": false,
+                  "code": "INTERNAL_SERVER_ERROR",
+                  "message": "서버 내부 오류가 발생했습니다.",
+                  "timestamp": "2026-01-29T02:26:25"
+                }
+                """)
+                    )
+            )
+    })
+    public @interface DetailTagsDoc {}
+
     /**
      * 주문서 레퍼런스 조회 API 문서
      */
