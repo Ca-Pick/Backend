@@ -25,9 +25,6 @@ public class CakeStore {
     private BigDecimal latitude;
     private BigDecimal longitude;
 
-    private String price;
-    private String schedule;
-
     @OneToMany(mappedBy = "cakeStore")
     private List<CakeReference> cakeReferences;
 }

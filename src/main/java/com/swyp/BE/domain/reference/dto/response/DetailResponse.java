@@ -12,20 +12,20 @@ import java.util.List;
 @Builder
 public class DetailResponse {
 
+    private Long cakeId;
     private String instagramEmbed;
 
     private String name;
 
     private List<String> tags;
 
-    private String price;
-    private String schedule;
-
     private String address;
     private BigDecimal latitude;
     private BigDecimal longitude;
 
     private String instagramUrl;
+
+    private boolean saved;
 
     private List<DetailResponse.CakeListInfo> cakelists;
 
@@ -36,26 +36,26 @@ public class DetailResponse {
 
         private Long cakeId;
         private String instagramEmbed;
+        private boolean saved;
 
-        public static DetailResponse.CakeListInfo of(Long cakeId, String instagramEmbed) {
-            return new DetailResponse.CakeListInfo(cakeId, instagramEmbed);
+        public static DetailResponse.CakeListInfo of(Long cakeId, String instagramEmbed, boolean saved) {
+            return new DetailResponse.CakeListInfo(cakeId, instagramEmbed, saved);
         }
     }
 
-    public static DetailResponse from(String instagramEmbed, String name,
-                                      List<String> tags, String price, String schedule,
-                                      String address, BigDecimal latitude, BigDecimal longitude,
-                                      String instagramUrl, List<DetailResponse.CakeListInfo> cakes) {
+    public static DetailResponse from(Long cakeId, String instagramEmbed, String name,
+                                      List<String> tags, String address, BigDecimal latitude, BigDecimal longitude,
+                                      String instagramUrl, boolean saved, List<DetailResponse.CakeListInfo> cakes) {
         return DetailResponse.builder()
+                .cakeId(cakeId)
                 .instagramEmbed(instagramEmbed)
                 .name(name)
                 .tags(tags)
-                .price(price)
-                .schedule(schedule)
                 .address(address)
                 .latitude(latitude)
                 .longitude(longitude)
                 .instagramUrl(instagramUrl)
+                .saved(saved)
                 .cakelists(cakes)
                 .build();
     }

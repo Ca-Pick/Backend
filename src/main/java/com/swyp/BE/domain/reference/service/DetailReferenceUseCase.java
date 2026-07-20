@@ -3,6 +3,7 @@ package com.swyp.BE.domain.reference.service;
 
 import com.swyp.BE.domain.reference.dto.response.DetailResponse;
 import com.swyp.BE.domain.reference.entity.*;
+import com.swyp.BE.domain.reference.repository.CakeSaveRepository;
 import com.swyp.BE.domain.reference.repository.CakeStoreRepository;
 import com.swyp.BE.domain.reference.repository.ReferenceRepository;
 import com.swyp.BE.global.exception.BusinessException;
@@ -20,8 +21,9 @@ public class DetailReferenceUseCase {
 
     private final ReferenceRepository referenceRepository;
     private final CakeStoreRepository cakeStoreRepository;
+    private final CakeSaveRepository cakeSaveRepository;
 
-    public DetailResponse excute(Long referenceId) {
+    public DetailResponse excute(Long userId, Long referenceId) {
 
         CakeReference cake = referenceRepository.findDetailById(referenceId)
                 .orElseThrow(BusinessException::referenceNotFound);
@@ -29,10 +31,18 @@ public class DetailReferenceUseCase {
         CakeStore cakeStore = cakeStoreRepository.findById(cake.getCakeStore().getId())
                 .orElseThrow(BusinessException::referenceNotFound);
 
+        log.info(String.valueOf(userId));
+
         List<DetailResponse.CakeListInfo> cakelist = cakeStore.getCakeReferences().stream()
-                .map(c -> DetailResponse.CakeListInfo.of(
-                        c.getId(),
-                        c.getInstagramEmbed()))
+                .map(c -> {
+                    boolean saved = false;
+                    if (userId != null) {
+                        saved = cakeSaveRepository.existsByUserIdAndCakeReferenceId(userId, c.getId());
+                    }
+
+                    return DetailResponse.CakeListInfo.of(c.getId(), c.getInstagramEmbed(), saved);
+
+                })
                 .toList();
 
         List<String> tags = new ArrayList<>();
@@ -46,10 +56,11 @@ public class DetailReferenceUseCase {
         tags.addAll(cake.getDetailReferences().stream()
                 .map(DetailReference::getDecoration).toList());
 
-        return DetailResponse.from(cake.getInstagramEmbed(), cake.getCakeStore().getName(),
-                tags, cake.getCakeStore().getPrice(), cake.getCakeStore().getSchedule() ,
-                cake.getCakeStore().getAddress(), cake.getCakeStore().getLatitude(),
-                cake.getCakeStore().getLongitude(), cake.getCakeStore().getInstagramUrl(),
+        boolean saved = cakeSaveRepository.existsByUserIdAndCakeReferenceId(userId, referenceId);
+
+        return DetailResponse.from(cake.getId(), cake.getInstagramEmbed(), cake.getCakeStore().getName(),
+                tags, cake.getCakeStore().getAddress(), cake.getCakeStore().getLatitude(),
+                cake.getCakeStore().getLongitude(), cake.getCakeStore().getInstagramUrl(), saved,
                 cakelist);
 
     }
