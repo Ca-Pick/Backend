@@ -2,6 +2,7 @@ package com.swyp.BE.domain.auth.controller;
 
 import com.swyp.BE.domain.user.entity.User;
 import com.swyp.BE.domain.user.repository.UserRepository;
+import com.swyp.BE.global.documention.AuthApiDocumentation;
 import com.swyp.BE.global.exception.BusinessException;
 import com.swyp.BE.global.exception.ErrorCode;
 import com.swyp.BE.global.jwt.JwtProvider;
@@ -27,6 +28,7 @@ public class AuthController {
     private final CookieUtil cookieUtil;
     private final UserRepository userRepository;
 
+    @AuthApiDocumentation.ReissueDoc
     @PostMapping("/reissue")
     public ResponseEntity<ApiResponse<Void>> reissue(
             @CookieValue(value = "refreshToken", required = false) String refreshToken,
@@ -56,6 +58,7 @@ public class AuthController {
         return ResponseEntity.ok(ApiResponse.success());
     }
 
+    @AuthApiDocumentation.LogoutDoc
     @PostMapping("/logout")
     public ResponseEntity<ApiResponse<Void>> logout(
             @CookieValue(value = "refreshToken", required = false) String refreshToken,

@@ -9,6 +9,8 @@ services:
       redis:
         condition: service_healthy
     environment:
+      - SPRING_PROFILES_ACTIVE=${SPRING_PROFILES_ACTIVE}
+      - SERVER_FORWARD_HEADERS_STRATEGY=framework
       - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/db
       - SPRING_DATASOURCE_USERNAME=${DB_USER}
       - SPRING_DATASOURCE_PASSWORD=${DB_PASSWORD}
@@ -68,6 +70,7 @@ services:
     volumes:
       - ./nginx/conf.d:/etc/nginx/conf.d:ro
       - /etc/letsencrypt:/etc/letsencrypt:ro
+      - ./certbot-www:/var/www/certbot:ro
     depends_on:
       - app
 

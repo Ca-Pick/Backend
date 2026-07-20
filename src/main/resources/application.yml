@@ -84,6 +84,8 @@ app:
     config:
       activate:
         on-profile: prod
+  server:
+    forward-headers-strategy: framework
   app:
     cookie:
       secure: true
