@@ -56,7 +56,10 @@ public class DetailReferenceUseCase {
         tags.addAll(cake.getDetailReferences().stream()
                 .map(DetailReference::getDecoration).toList());
 
-        boolean saved = cakeSaveRepository.existsByUserIdAndCakeReferenceId(userId, referenceId);
+        boolean saved = false;
+        if (userId != null) {
+            saved = cakeSaveRepository.existsByUserIdAndCakeReferenceId(userId, referenceId);
+        }
 
         return DetailResponse.from(cake.getId(), cake.getInstagramEmbed(), cake.getCakeStore().getName(),
                 tags, cake.getCakeStore().getAddress(), cake.getCakeStore().getLatitude(),
