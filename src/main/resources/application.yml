@@ -76,7 +76,7 @@ app:
     same-site: ${COOKIE_SAME_SITE:Lax}
     domain: ${COOKIE_DOMAIN:}
   cors:
-    allowed-origin: http://localhost:5173
+    allowed-origin: ${FRONTEND_ORIGIN:http://localhost:5173}
 
 ---
 
