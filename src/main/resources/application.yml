@@ -68,8 +68,8 @@ jwt:
 
 app:
   oauth2:
-    redirect-uri: ${FRONTEND_REDIRECT_URI:http://localhost:3000/home}
-    failure-redirect-uri: ${FRONTEND_FAILURE_REDIRECT_URI:http://localhost:3000/login?error=1}
+    default-redirect-origin: ${FRONTEND_REDIRECT_URI:https://www.ca-pick.com}
+    failure-redirect-path: ${FRONTEND_FAILURE_REDIRECT_URI:/login?error=1}
 
   cookie:
     secure: ${COOKIE_SECURE:false}

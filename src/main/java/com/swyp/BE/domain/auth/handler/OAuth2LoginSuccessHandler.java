@@ -1,5 +1,6 @@
 package com.swyp.BE.domain.auth.handler;
 
+import com.swyp.BE.domain.auth.oauth.RedirectOriginResolver;
 import com.swyp.BE.domain.user.dto.CustomOAuth2User;
 import com.swyp.BE.global.jwt.JwtProvider;
 import com.swyp.BE.global.jwt.RefreshTokenRepository;
@@ -22,9 +23,10 @@ public class OAuth2LoginSuccessHandler implements AuthenticationSuccessHandler {
     private final JwtProvider jwtProvider;
     private final RefreshTokenRepository refreshTokenRepository;
     private final CookieUtil cookieUtil;
+    private final RedirectOriginResolver redirectOriginResolver;
 
-    @Value("${app.oauth2.redirect-uri}")
-    private String redirectUri;
+    @Value("${app.oauth2.default-redirect-origin}")
+    private String defaultRedirectOrigin;
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
@@ -45,6 +47,9 @@ public class OAuth2LoginSuccessHandler implements AuthenticationSuccessHandler {
                 cookieUtil.createAccessTokenCookie(accessToken, accessTokenMaxAgeSeconds).toString());
         response.addHeader(HttpHeaders.SET_COOKIE,
                 cookieUtil.createRefreshTokenCookie(refreshToken, refreshTokenMaxAgeSeconds).toString());
+
+        String origin = redirectOriginResolver.extractOrigin(request.getParameter("state"));
+        String redirectUri = origin != null ? origin : defaultRedirectOrigin;
 
         response.sendRedirect(redirectUri);
     }
