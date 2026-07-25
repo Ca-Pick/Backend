@@ -1,6 +1,7 @@
 package com.swyp.BE.global.config;
 import com.swyp.BE.domain.auth.handler.OAuth2LoginFailureHandler;
 import com.swyp.BE.domain.auth.handler.OAuth2LoginSuccessHandler;
+import com.swyp.BE.domain.auth.oauth.RedirectAwareAuthorizationRequestResolver;
 import com.swyp.BE.domain.auth.service.CustomOAuth2UserService;
 import com.swyp.BE.global.jwt.JwtAuthenticationFilter;
 import lombok.RequiredArgsConstructor;
@@ -24,6 +25,7 @@ public class SecurityConfig {
     private final OAuth2LoginFailureHandler oAuth2LoginFailureHandler;
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
     private final UrlBasedCorsConfigurationSource corsConfigurationSource;
+    private final RedirectAwareAuthorizationRequestResolver redirectAwareAuthorizationRequestResolver;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -41,7 +43,9 @@ public class SecurityConfig {
                         .anyRequest().permitAll()
                 )
                 .oauth2Login(oauth2 -> oauth2
-                        .authorizationEndpoint(endpoint -> endpoint.baseUri("/api/oauth2/authorization"))
+                        .authorizationEndpoint(endpoint -> endpoint
+                                .baseUri("/api/oauth2/authorization")
+                                .authorizationRequestResolver(redirectAwareAuthorizationRequestResolver))
                         .redirectionEndpoint(endpoint -> endpoint.baseUri("/api/login/oauth2/code/*"))
                         .userInfoEndpoint(userInfo -> userInfo.userService(customOAuth2UserService))
                         .successHandler(oAuth2LoginSuccessHandler)
