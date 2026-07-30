@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import org.springframework.data.domain.Pageable;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -66,20 +67,23 @@ public interface ReferenceRepository extends JpaRepository<CakeReference, Long> 
         select c
         from CakeReference c
         where c.theme = "생일"
+        order by rand()
     """)
-    List<CakeReference> findBirthday();
+    List<CakeReference> findBirthday(Pageable pageable);
 
     @Query("""
         select c
         from CakeReference c
         where c.theme = "기념일"
+        order by rand()
     """)
-    List<CakeReference> findCelebration();
+    List<CakeReference> findCelebration(Pageable pageable);
 
     @Query("""
         select c
         from CakeReference c
         where c.theme = "졸업/입학"
+        order by rand()
     """)
-    List<CakeReference> findAcademic();
+    List<CakeReference> findAcademic(Pageable pageable);
 }
