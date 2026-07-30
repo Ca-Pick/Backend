@@ -6,6 +6,7 @@ import com.swyp.BE.domain.reference.entity.CakeReference;
 import com.swyp.BE.domain.reference.repository.CakeSaveRepository;
 import com.swyp.BE.domain.reference.repository.ReferenceRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,9 +19,9 @@ public class RecommendReferenceUseCase {
     private final CakeSaveRepository cakeSaveRepository;
 
     public RecommendResponse excute(Long userId) {
-        List<CakeReference> birthday = referenceRepository.findBirthday();
-        List<CakeReference> celebration = referenceRepository.findCelebration();
-        List<CakeReference> academic = referenceRepository.findAcademic();
+        List<CakeReference> birthday = referenceRepository.findBirthday(PageRequest.of(0, 5));
+        List<CakeReference> celebration = referenceRepository.findCelebration(PageRequest.of(0, 5));
+        List<CakeReference> academic = referenceRepository.findAcademic(PageRequest.of(0, 5));
 
         List<RecommendResponse.ThemeInfo> births = birthday.stream()
                 .map(birth ->{
