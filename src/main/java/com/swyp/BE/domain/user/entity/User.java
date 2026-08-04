@@ -24,6 +24,7 @@ public class User extends BaseTimeEntity {
     private String provider;
     private String providerId;
     private String nickname;
+    private String naverAccessToken;
 
     @Enumerated(EnumType.STRING)
     private Role role;
@@ -38,6 +39,11 @@ public class User extends BaseTimeEntity {
 
     public User updateNickname(String nickname) {
         this.nickname = nickname;
+        return this;
+    }
+
+    public User updateNaverAccessToken(String naverAccessToken) {
+        this.naverAccessToken = naverAccessToken;
         return this;
     }
 }

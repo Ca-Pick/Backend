@@ -30,6 +30,10 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
                 .map(existing -> existing.updateNickname(attributes.getNickname()))
                 .orElseGet(() -> userRepository.save(attributes.toEntity()));
 
+        if ("naver".equals(registrationId)) {
+            user.updateNaverAccessToken(userRequest.getAccessToken().getTokenValue());
+        }
+
         return new CustomOAuth2User(user.getId(), user.getRole(), oAuth2User.getAttributes());
     }
 }
