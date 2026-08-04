@@ -18,6 +18,7 @@ public class UserService {
     private final UserRepository userRepository;
     private final RefreshTokenRepository refreshTokenRepository;
     private final SaveRepository saveRepository;
+    private final OAuthUnlinkService oAuthUnlinkService;
 
     @Transactional(readOnly = true)
     public UserInfoResponse getMyInfo(Long userId) {
@@ -43,6 +44,8 @@ public class UserService {
     public void withdraw(Long userId) {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new BusinessException(ErrorCode.NOT_FOUND));
+
+        oAuthUnlinkService.unlink(user);
 
         saveRepository.deleteAllByUserId(userId);
         refreshTokenRepository.deleteByUserId(userId);

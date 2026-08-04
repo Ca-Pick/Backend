@@ -27,7 +27,6 @@ spring:
             redirect-uri: "{baseUrl}/api/login/oauth2/code/{registrationId}"
             scope:
               - name
-              - nickname
             client-name: Naver
         provider:
           kakao:
@@ -70,6 +69,9 @@ app:
   oauth2:
     default-redirect-origin: ${FRONTEND_REDIRECT_URI:https://www.ca-pick.com}
     failure-redirect-path: ${FRONTEND_FAILURE_REDIRECT_URI:/login?error=1}
+
+  kakao:
+    admin-key: ${KAKAO_ADMIN_KEY}
 
   cookie:
     secure: ${COOKIE_SECURE:false}

@@ -43,7 +43,7 @@ public class OAuthAttributes {
         return OAuthAttributes.builder()
                 .provider("naver")
                 .providerId((String) response.get("id"))
-                .nickname((String) response.get("nickname"))
+                .nickname((String) response.get("name"))
                 .build();
     }
 
