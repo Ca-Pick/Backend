@@ -16,8 +16,9 @@
 ## ✨ Features
 | 기능 | 화면 |
 |:---:|-----|
-| 모임 생성 | <img src="https://github.com/user-attachments/assets/edad101d-e82c-4abb-ad8f-dc99de97da15" width="600"/> |
-| 모임 참여 | <img src="https://github.com/user-attachments/assets/22de76ac-7330-4967-9a11-9533b43933d1" width="600"/> |
+
+<img src="https://github.com/user-attachments/assets/338aa0ac-9727-4e82-b794-e4c1ede2f7fb" width="600"/> |
+<img src="https://github.com/user-attachments/assets/22de76ac-7330-4967-9a11-9533b43933d1" width="600"/> |
 | 출발지 등록 | <img src="https://github.com/user-attachments/assets/7253df65-81b9-44e2-a611-b9d3253f70f5" width="600"/> |
 | 중간지점 결과보기 | <img src="https://github.com/user-attachments/assets/a161fd4e-fa04-4b48-9f11-5775e78d553c" width="600"/> |
 | 장소 추천 | <img src="https://github.com/user-attachments/assets/0ec6302a-a7ef-49eb-93ff-d621307f8a44" width="600"/> |
