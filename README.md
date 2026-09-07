@@ -17,7 +17,7 @@
 | 기능 | 화면 |
 |:---:|-----|
 
-<img src="https://github.com/user-attachments/assets/445c4ccd-6412-46cd-b008-52005a9c5f12" width="600"/> |
+<img src="https://github.com/user-attachments/assets/6df12fb8-49fc-4692-b45f-cf7ddedee8cb" width="600"/> |
 <img src="https://github.com/user-attachments/assets/e85cf45e-4539-4cb7-9d22-29973b0e27e8" width="600"/> |
 
 ---
