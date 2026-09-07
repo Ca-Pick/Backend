@@ -132,7 +132,7 @@
 ### 💻 Infrastructure Detail
 | Infrastructure | Detail |
 | :--- | :--- |
-| **Cloud** | **NCP (Naver Cloud Platform)** |
+| **Cloud** | **AWS ** |
 | **Instance** | Micro Server (Ubuntu 22.04 LTS) |
 | **Database** | MariaDB 10.11 (Dockerized) |
 | **Container** | Docker, Docker-compose |
@@ -143,10 +143,10 @@
 GitHub Actions와 NCP Container Registry를 연동하여 배포 자동화를 구축했습니다.
 
 1.  **GitHub Actions**: `main` 브랜치에 코드 Push 시 빌드 및 테스트 자동 수행
-2.  **NCP Container Registry (NCR)**: 빌드된 이미지를 NCP 전용 컨테이너 저장소에 Push 및 관리
+2.  **NCP Container Registry (NCR)**: 빌드된 이미지를 AWS 전용 컨테이너 저장소에 Push 및 관리
 3.  **Deployment Flow**:
     * GitHub Actions에서 프로젝트 빌드 (Gradle)
-    * Docker 이미지 생성 후 **NCP Container Registry**로 Push
+    * Docker 이미지 생성 후 ** Container Registry**로 Push
     * 대상 서버에 SSH 접속 후 최신 이미지 `pull` 및 `docker-compose` 재실행
 
 ---
