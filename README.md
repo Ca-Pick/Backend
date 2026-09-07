@@ -1,8 +1,7 @@
 # 🤝 Ca-pick Backend
 <p align="center">
   <a href="https://mingling.kr">
-    <img width="765" height="614" alt="스크린샷 2026-07-17 오후 9 36 19 1" src="https://github.com/user-attachments/assets/7d41bd0e-2ad4-4e54-9910-86e5363429fb" />
-    <img src="https://github.com/user-attachments/assets/beb03991-6522-4caf-bfb7-028ea1cccf59" width="600"/>
+    <img src="https://github.com/user-attachments/assets/7d41bd0e-2ad4-4e54-9910-86e5363429fb" width="600"/>
   </a>
 </p>
 
