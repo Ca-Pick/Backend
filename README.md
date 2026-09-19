@@ -163,4 +163,4 @@ GitHub Actions와 NCP Container Registry를 연동하여 배포 자동화를 구
 ## 📄 API Documentation
 
 상세한 API 명세 및 테스트는 아래 Swagger UI 링크를 참조하세요.
-👉 **[Mingling Swagger UI 바로가기](https://api.ca-pick.com/swagger-ui/index.html)**
+👉 **[ca-pick Swagger UI 바로가기](https://api.ca-pick.com/swagger-ui/index.html)**
