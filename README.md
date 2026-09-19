@@ -42,7 +42,8 @@
 
 ## 🖥 Architecture
 
-<img width="1478" height="815" alt="Image" src="https://github.com/user-attachments/assets/8c36a44c-4e4d-4128-9ef3-c9ca59203e38" />
+<img width="3200" height="2260" alt="image" src="https://github.com/user-attachments/assets/0b8a1104-5e70-491f-a975-0df31c761f95" />
+
 
 ### 📊 Entity Relationship Diagram (ERD)
 
@@ -122,8 +123,7 @@
 
 * **Web Server**: Nginx (Reverse Proxy)
 * **Application Server**: Docker Containers (Spring Boot 3.x)
-* **Database**: Docker Container (MariaDB 10.11+)
-* **Log Management**: Host-Container Volume Mapping (`/logs`)
+* **Database**: Docker Container (Mysql 8.0)
 
 ---
 
@@ -131,32 +131,24 @@
 | Infrastructure | Detail |
 | :--- | :--- |
 | **Cloud** | **AWS ** |
-| **Instance** | Micro Server (Ubuntu 22.04 LTS) |
-| **Database** | MariaDB 10.11 (Dockerized) |
+| **Instance** | Micro Server (Ubuntu 26.04 LTS) |
+| **Database** | MySQL 8.0 |
 | **Container** | Docker, Docker-compose |
 
 ---
 
 ### 🚀 CI/CD Pipeline
-GitHub Actions와 NCP Container Registry를 연동하여 배포 자동화를 구축했습니다.
 
-1.  **GitHub Actions**: `main` 브랜치에 코드 Push 시 빌드 및 테스트 자동 수행
-2.  **NCP Container Registry (NCR)**: 빌드된 이미지를 AWS 전용 컨테이너 저장소에 Push 및 관리
-3.  **Deployment Flow**:
-    * GitHub Actions에서 프로젝트 빌드 (Gradle)
-    * Docker 이미지 생성 후 ** Container Registry**로 Push
-    * 대상 서버에 SSH 접속 후 최신 이미지 `pull` 및 `docker-compose` 재실행
+1. `main` 브랜치에 push되면 GitHub Actions가 실행됩니다.
+2. Actions runner에서 Docker 멀티 스테이지 빌드를 수행합니다. 빌드 스테이지에서 Java 21과 Gradle로 애플리케이션 JAR를 만들고, 런타임 이미지에 포함합니다.
+3. 완성된 Docker 이미지를 Amazon ECR에 `latest` 태그로 push합니다.
+4. SCP로 운영 Docker Compose 및 Nginx 설정을 EC2에 동기화합니다.
+5. SSH로 EC2에 접속하여 ECR 로그인과 이미지 경로 설정을 수행합니다.
+6. EC2가 ECR에서 앱 이미지를 pull합니다.
+7. `docker compose -f docker-compose.prod.yml up -d`로 컨테이너를 실행·갱신합니다.
+8. Nginx 설정을 reload합니다.
 
----
 
-### 💾 Log Management
-컨테이너 재배포 시에도 과거의 에러 기록을 보존하기 위해 호스트 서버의 파일 시스템과 동기화하여 관리합니다.
-
-* **로그 보관 경로**: `/home/ncp-user/mingling-logs` (Host) ↔ `/logs` (Container)
-* **로그 파일 구성**:
-    * `error.log`: 모든 **ERROR** 레벨 로그 기록 (서비스 장애 추적용)
-    * `warn.log`: **WARN** 이상 레벨 로그 기록 (잠재적 문제 모니터링용)
-* **모니터링**: 서버 터미널에서 `tail -f` 명령어를 통해 실시간으로 시스템 상태를 확인할 수 있습니다.
 
 ---
 
